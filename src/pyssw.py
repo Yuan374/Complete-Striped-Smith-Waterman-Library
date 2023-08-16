@@ -309,37 +309,37 @@ def main(args):
                         n3 = n4 + 1
                         n4 = n4 + min(60,len(sQ)-i-60) - sQ.count('-',i+60,i+120)
             else:
-                print("{}\t".format(sQId)),
+                print("{}\t".format(sQId), end=""),
                 if resPrint[0] == 0:
-                    print("4\t*\t0\t255\t*\t*\t0\t0\t*\t*"),
+                    print("4\t*\t0\t255\t*\t*\t0\t0\t*\t*", end=""),
                 else:
                     mapq = int(-4.343 * math.log(1-abs(resPrint[0]-resPrint[1])/float(resPrint[0])))
                     mapq = int(mapq + 4.99);
                     if mapq >= 254:
                         mapq = 254
                     if strand == 1:
-                        print('16\t'),
+                        print('16\t', end=""),
                     else:
-                        print('0\t'),
-                    print('{}\t{}\t{}\t'.format(sRId, resPrint[2]+1, mapq)),
-                    print(sCigar),
-                    print('\t*\t0\t0\t'),
-                    print(sQSeq[resPrint[4]:resPrint[5]+1]) if strand==0 else print(sQRcSeq[resPrint[4]:resPrint[5]+1]),
-                    print('\t'),
+                        print('0\t', end=""),
+                    print('{}\t{}\t{}\t'.format(sRId, resPrint[2]+1, mapq), end=""),
+                    print(sCigar, end=""),
+                    print('\t*\t0\t0\t', end=""),
+                    print(sQSeq[resPrint[4]:resPrint[5]+1], end="") if strand==0 else print(sQRcSeq[resPrint[4]:resPrint[5]+1], end=""),
+                    print('\t', end=""),
                     if sQQual:
                         if strand == 0:
-                            print(sQQual[resPrint[4]:resPrint[5]+1]),
+                            print(sQQual[resPrint[4]:resPrint[5]+1], end=""),
                         else:
-                            print(sQQual[-resPrint[4]-1:-resPrint[5]-1:-1])
+                            print(sQQual[-resPrint[4]-1:-resPrint[5]-1:-1], end="")
                     else:
-                        print('*'),
+                        print('*', end=""),
 
-                    print('\tAS:i:{}'.format(resPrint[0])),
-                    print('\tNM:i:{}\t'.format(len(sA)-sA.count('|'))),
+                    print('\tAS:i:{}'.format(resPrint[0]), end=""),
+                    print('\tNM:i:{}\t'.format(len(sA)-sA.count('|')), end=""),
                     if resPrint[1] > 0:
                         print('ZS:i:{}'.format(resPrint[1]))
                     else:
-                        print
+                        print()
 
 
         ssw.init_destroy(qProfile)
